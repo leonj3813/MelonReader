@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+
+    $(document).ready(function () {
+        $.post('@Url.Action("UserInfo", "Home")',
+        function (data, statusText) {
+            var name = data.name;
+            var id = data.id;
+            $(".info").append(name);
+        });
+    });
+
+</script>
+
+
+Congrats on logging in!
+
+<div class="info">Welcome </div>
+
