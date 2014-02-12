@@ -6,17 +6,38 @@
 
     $(document).ready(function () {
         $.post('@Url.Action("UserInfo", "Home")',
-        function (data, statusText) {
-            var name = data.name;
-            var id = data.id;
-            $(".info").append(name);
+        function (received, statusText) {
+            $(".info").append(received.name);
+        });
+
+        $.post('@Url.Action("Friends", "Home")',
+        function (received, statusText) {
+            var count = 0;
+            $(".friends").append("<ul>");
+            $.each(received.data, function (index, things) {
+                $(".friends").append("<li>" + things.name + "</li>");
+                count++;
+            });
+            $(".friends").append("</ul>");
+            //var id = data.id;
+            $(".friendsNumber").append("You have " + count + " friends");
+
         });
     });
 
 </script>
 
-
-Congrats on logging in!
+<ul class="nav nav-pills" id="tabs">
+    <li class="active"><a href="">Main</a></li>
+    <li><a href="#">Post</a></li>
+    <li><a href="#">Feed</a></li>
+</ul>
 
 <div class="info">Welcome </div>
+<div class="friendsNumber"></div>
+<br />
+<div class="friends"></div>
+
+
+
 

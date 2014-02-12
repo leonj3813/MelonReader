@@ -61,16 +61,26 @@ namespace MelonReader.Controllers
             //return View();
         }
 
-        public ActionResult UserInfo()
+        public void Friends()
         {
             var accessToken = Session["AccessToken"].ToString();
             var client = new FacebookClient(accessToken);
-            dynamic result = client.Get("me/permissions");
-            return Json(new
-            {
-                id = result.id,
-                name = result.name,
-            });
+            dynamic result = client.Get("me/friends");
+            Response.Clear();
+            Response.ContentType = "application/json; charset=utf-8";
+            Response.Write(result);
+            Response.End();
+        }
+
+        public void UserInfo()
+        {
+            var accessToken = Session["AccessToken"].ToString();
+            var client = new FacebookClient(accessToken);
+            dynamic result = client.Get("me");
+            Response.Clear();
+            Response.ContentType = "application/json; charset=utf-8";
+            Response.Write(result);
+            Response.End();
         }
 
         public ActionResult About()
