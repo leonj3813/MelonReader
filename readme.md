@@ -1,0 +1,2 @@
+An application to view stats on a facebook page and make posts using the facebook api. This will use goo.gl api to shorten links posted to facebook and monitor analytics.
+Support for more social media platforms will eventually be added.
